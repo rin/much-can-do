@@ -13,23 +13,6 @@ mongoose.connect(process.env.DB_URI || DEFAULT_DB_URI, {
   useUnifiedTopology: true,
 });
 
-const typeDefs = gql`
-  type Query {
-    getSkill(id: ID!): Skill
-    skills: [Skill]
-  }
-  type Skill {
-    id: ID!
-    title: String!
-    strength: Int!
-  }
-  type Mutation {
-    createSkill(title: String!, strength: Int!): Skill!
-    updateSkill(id: ID!, title: String, strength: Int): Skill!
-    deleteSkill(id: ID!): Skill!
-  }
-`;
-
 const resolvers = {
   Query: {
     skills: () => Skill.find(),
@@ -60,6 +43,14 @@ const resolvers = {
 const server = new ApolloServer({
   typeDefs,
   resolvers,
+  playground: {
+    tabs: [
+      {
+        endpoint: 'http://localhost:4000/',
+        query: defaultQuery,
+      },
+    ],
+  },
 });
 
 mongoose.connection.once('open', function () {
