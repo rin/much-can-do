@@ -6,6 +6,7 @@ import {
 } from '@apollo/client';
 
 import Header from './Header';
+import Skills from './Skills';
 
 const App = () => {
   const httpLink = createHttpLink({
@@ -46,6 +47,7 @@ const App = () => {
               </div>
             </div>
           </div>
+          <Skills />
         </div>
       </div>
     </ApolloProvider>
