@@ -1,5 +1,7 @@
+import App from '../src/components/App';
+
 function HomePage () {
-  return <div>Welcome to MuchCanDo!</div>
+  return <App />
 }
 
 export default HomePage
