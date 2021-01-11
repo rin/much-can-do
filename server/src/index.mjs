@@ -1,8 +1,10 @@
 import apollo from 'apollo-server';
 import mongoose from 'mongoose';
+import typeDefs from './typeDefs.mjs';
+import defaultQuery from './defaultQuery.mjs';
 import Skill from './models/skill.mjs';
 
-const { ApolloServer, gql } = apollo;
+const { ApolloServer } = apollo;
 // some oddity when importing ApolloServer,
 // see https://github.com/apollographql/apollo-server/issues/1356#issuecomment-565273737
 
@@ -29,8 +31,14 @@ const resolvers = {
     },
     updateSkill: async (_, { id, title, strength }) => {
       const skill = Skill.findById(id);
-      // TODO: update
-      await skill.save();
+      await Skill.findByIdAndUpdate(
+        id,
+        {
+          title: title || skill.title,
+          strength: strength || skill.strength,
+        },
+        { useFindAndModify: false },
+      );
       return skill;
     },
     deleteSkill: async (_, { id }) => {
