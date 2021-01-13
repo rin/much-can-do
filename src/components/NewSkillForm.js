@@ -12,12 +12,41 @@ const ADD_SKILL = gql`
 `;
 
 const NewSkillForm = () => {
-  const [addSkill, { data }] = useMutation(ADD_SKILL);
+  const [addSkill] = useMutation(ADD_SKILL, {
+    update(cache, { data: { createSkill } }) {
+      cache.modify({
+        fields: {
+          skills(existingSkills = []) {
+            const newSkillRef = cache.writeFragment({
+              data: createSkill,
+              fragment: gql`
+                fragment NewSkill on Skill {
+                  id
+                  title
+                  strength
+                }
+              `,
+            });
+            return [...existingSkills, newSkillRef];
+          },
+        },
+      });
+    },
+  });
   const [title, setTitle] = useState('');
-  const [strength, setStrength] = useState(null);
+  const [strength, setStrength] = useState('');
 
+  // TODO: Add loading spinner …?
   // if (loading) return <p>Loading...</p>;
+
+  // TODO: Add error handling
   // if (error) return <p>Error :(</p>;
+
+  const handleClick = () => {
+    setTitle('');
+    setStrength('');
+    addSkill({ variables: { strength, title } });
+  };
 
   return (
     <div className="w-96 rounded-md shadow-md mb-8 mx-auto">
@@ -53,7 +82,7 @@ const NewSkillForm = () => {
       <div className="p-4 w-full">
         <div>
           <button
-            onClick={() => addSkill({ variables: { strength, title } })}
+            onClick={handleClick}
             className="inline-flex items-center w-full justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700"
           >
             Add
