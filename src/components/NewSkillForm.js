@@ -43,10 +43,14 @@ const NewSkillForm = () => {
   // if (error) return <p>Error :(</p>;
 
   const handleClick = () => {
-    setTitle('');
-    setStrength('');
-    addSkill({ variables: { strength, title } });
+    if (strength && title) {
+      addSkill({ variables: { strength, title } });
+      setTitle('');
+      setStrength('');
+    }
   };
+
+  const buttonDisabled = strength === '' || title === '';
 
   return (
     <div className="w-96 rounded-md shadow-md mb-8 mx-auto">
@@ -83,7 +87,12 @@ const NewSkillForm = () => {
         <div>
           <button
             onClick={handleClick}
-            className="inline-flex items-center w-full justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700"
+            className={`inline-flex items-center w-full justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white ${
+              buttonDisabled
+                ? 'bg-indigo-400'
+                : 'bg-indigo-600 hover:bg-indigo-700'
+            } `}
+            disabled={buttonDisabled}
           >
             Add
           </button>
