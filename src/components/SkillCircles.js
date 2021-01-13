@@ -33,12 +33,19 @@ const SkillCircles = () => {
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error :(</p>;
 
+  const handleBubbleClick = (label) => {
+    // … and here I realize that using this outdated library was a mistake
+    // because this function uses the label, which is not unique
+    // and I would need to search the skills to find the id 🤦
+    // TODO: reuse new skill form to edit a skill here
+  };
+
   return (
-    <div className="pb-6 w-full">
+    <div className="pb-6 w-96 mx-auto">
       <AutoSizer disableHeight>
         {({ width }) => (
           <BubbleChart
-            graph={{ zoom: 0.5, offsetX: 0, offsetY: 0 }}
+            graph={{ zoom: 1, offsetX: 0, offsetY: 0 }}
             showLegend={false}
             valueFont={{ size: 0 }}
             width={width}
@@ -46,15 +53,15 @@ const SkillCircles = () => {
             legendPercentage={0}
             labelFont={{
               family: 'Helvetica',
-              size: 18,
+              size: 14,
               color: '#fff',
               weight: 'normal',
             }}
-            // TODO: Edit skill
-            // bubbleClickFunc={this.bubbleClick}
-            data={data.skills.map(({ title, strength }, index) => ({
+            bubbleClickFun={handleBubbleClick}
+            data={data.skills.map(({ title, strength, id }, index) => ({
               label: title,
               value: strength,
+              id,
               color: CIRCLE_COLORS[index],
             }))}
           />
