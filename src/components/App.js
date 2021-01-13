@@ -5,8 +5,8 @@ import {
   InMemoryCache,
 } from '@apollo/client';
 import Header from './Header';
-import Skills from './Skills';
 import NewSkillForm from './NewSkillForm';
+import SkillCircles from './SkillCircles';
 
 const App = () => {
   const httpLink = createHttpLink({
@@ -22,7 +22,7 @@ const App = () => {
     <ApolloProvider client={client}>
       <div className="px-4">
         <Header />
-          <Skills />
+        <SkillCircles />
         <NewSkillForm />
       </div>
     </ApolloProvider>
