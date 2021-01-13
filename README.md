@@ -2,6 +2,8 @@
 
 _All your skills, beautifully visualized … or something_
 
+![So Much Can Do](much-can-do.png?raw=true)
+
 ## 🥞 Stack
 
 - Running on [Node](https://nodejs.org/en/) 🏃‍♀️
