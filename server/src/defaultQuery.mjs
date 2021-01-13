@@ -9,7 +9,7 @@ query Query {
   }
 }
 
-# mutation addSkill {
+# mutation AddSkill {
 #  createSkill(title: "Eating", strength: 9){ id
 #   title strength }
 # }
