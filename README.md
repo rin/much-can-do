@@ -1,70 +1,69 @@
-# Getting Started with Create React App
+# Much Can Do
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+_All your skills, beautifully visualized … or something_
 
-## Available Scripts
+## 🥞 Stack
 
-In the project directory, you can run:
+- Running on [Node](https://nodejs.org/en/) 🏃‍♀️
+- Built on [GraphQL and Apollo](https://www.apollographql.com/) 🚀
+- Made faster by [Next.js](https://nextjs.org/) 🚀
+- Backed by [MongoDB](https://jestjs.io/) 🌱
+- Tested with [jest](https://jestjs.io/) 🕵🏽‍♀️
+- Polished with [eslint](https://eslint.org/) & [prettier](https://prettier.io/) ✨
 
-### `yarn start`
+## Prerequisites
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- [node](https://nodejs.org/en/download/package-manager/) >= 14
+- [yarn](https://classic.yarnpkg.com/en/docs/install)
+- MongoDB
+- Git
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Setting it up
 
-### `yarn test`
+- Clone the repository.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```
+git clone git@github.com:rin/much-can-do.git
+```
 
-### `yarn build`
+- Enter the main folder and install the dependencies:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```
+cd much-can-do && yarn
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- Navigate to the `server` folder and install its dependencies.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```
+cd server && yarn
+```
 
-### `yarn eject`
+- Copy the `.env.example` and modify the `MONGO_DB_URI` to match the URI of the database you want to use. (To create a database, run your mongo client with `mongo`, then enter `use muchcando`.)
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+```
+mv .env.example .env
+```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Running it
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+- Start the server.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+```
+cd server && yarn start
+```
 
-## Learn More
+- Start the application.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```
+yarn start
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- You can see the GraphQL playground at `http://localhost:4000`.
+- The app is running at `http://localhost:3000`.
 
-### Code Splitting
+## Known Issues / Left To Do
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- Validations are missing for the New Skill form
+- Edit Skill not working
+- Delete Skill not working
+- Frontend tests
